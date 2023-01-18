@@ -48,11 +48,29 @@ function criaElemento(item) {
     numeroItem.innerHTML = item.quantidade;
     numeroItem.dataset.id = item.id;
     novoItem.appendChild(numeroItem);
+
     novoItem.innerHTML += item.nome;
+
+    novoItem.appendChild(botaoDeleta())
 
     lista.appendChild(novoItem)
 }
 
 function atualizaElemento(item) {
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade;
+}
+
+function botaoDeleta() {
+    const elementoBotao = document.createElement("button");
+    elementoBotao.innerText = "Remover";
+
+    elementoBotao.addEventListener("click", function ()  {
+        deletaElemento(this.parentNode);
+    })
+
+    return elementoBotao;
+}
+
+function deletaElemento(tag) {
+    tag.remove();
 }
